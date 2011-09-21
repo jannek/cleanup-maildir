@@ -391,13 +391,13 @@ class MaildirCleaner(object):
             else:
                 if (msg.getAge() >= minAge) and ((not self.keepRead) or (self.keepRead and msg.isNew())):
                     if mode == 'trash':
-                        self.log(logging.INFO, "%sTrashing #%d (old)" %
+                        self.log(logging.DEBUG, "%sTrashing #%d (old)" %
                                  (fakeMsg, i), msg)
                         if not self.isTrialRun:
                             self.trashWriter.deliver(msg)
                             os.unlink(msg.getFilePath())
                     elif mode == 'delete':
-                        self.log(logging.INFO, "%sDeleting #%d (old)" % 
+                        self.log(logging.DEBUG, "%sDeleting #%d (old)" % 
                                  (fakeMsg, i), msg)
                         if not self.isTrialRun:
                             os.unlink(msg.getFilePath())
@@ -415,7 +415,7 @@ class MaildirCleaner(object):
                                     + datePart
                         sfPath = os.path.join(self.folderBase, 
                                               self.folderPrefix + subFolder)
-                        self.log(logging.INFO, "%sArchiving #%d to %s" %
+                        self.log(logging.DEBUG, "%sArchiving #%d to %s" %
                                  (fakeMsg, i, subFolder), msg)
                         if not self.isTrialRun:
                             # Create the subfolder if needed
